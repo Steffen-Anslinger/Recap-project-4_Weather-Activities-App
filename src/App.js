@@ -3,19 +3,18 @@ import Form from "./components/Form/Form.js";
 import List from "./components/List/List.js";
 import { useState } from "react";
 // import { UID, uid, UIDFork, UIDConsumer, UIDReset } from "react-uid";
-// import { uid } from "uid";
+import { uid } from "uid";
 
 function App() {
   const [activities, setActivities] = useState([
-    "Surfing",
-    "Hiking",
-    "Dancing",
+    { activity: "Hiking", id: "1" },
   ]);
   // const [checkWeather, setCheckWeather] = useState(false);
 
-  function handleAddActivity(newActivity) {
-    setActivities([...activities, newActivity]);
-    console.log(activities, newActivity);
+  function handleAddActivity(data) {
+    data.id = uid();
+    setActivities([...activities, data]);
+    console.log(activities);
   }
 
   return (

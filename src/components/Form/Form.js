@@ -12,7 +12,7 @@ function Form({ onAddActivity }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    onAddActivity(data.activity);
+    onAddActivity(data);
 
     event.target.reset();
     event.target.elements.activity.focus();
