@@ -2,7 +2,8 @@ import "./App.css";
 import Form from "./components/Form/Form.js";
 import List from "./components/List/List.js";
 import { useState } from "react";
-import { uid } from "uid";
+// import { UID, uid, UIDFork, UIDConsumer, UIDReset } from "react-uid";
+// import { uid } from "uid";
 
 function App() {
   const [activities, setActivities] = useState([
@@ -12,12 +13,9 @@ function App() {
   ]);
   // const [checkWeather, setCheckWeather] = useState(false);
 
-  function handleAddActivity({ name, isForGoodWeather }) {
-    const newActivity = { name };
-    const isChecked = { isForGoodWeather };
-
-    setActivities([...activities, { newActivity, id: uid(), isChecked }]);
-    console.log(activities);
+  function handleAddActivity(newActivity) {
+    setActivities([...activities, newActivity]);
+    console.log(activities, newActivity);
   }
 
   return (
