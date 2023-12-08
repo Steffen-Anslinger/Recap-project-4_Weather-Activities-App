@@ -4,14 +4,18 @@ function Form({ onAddActivity }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const formData = {
-      name: event.target.elements.activity.value,
-      isForGoodWeather: event.target.elements.checkbox.checked,
-    };
+    // const formData = {
+    //   name: event.target.elements.activity.value,
+    //   isForGoodWeather: event.target.elements.checkbox.checked,
+    // };
 
-    onAddActivity(formData);
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    const isForGoodWeather = data.checkbox === "on" ? true : false;
+    onAddActivity(data, isForGoodWeather);
 
     event.target.reset();
+    event.target.elements.activity.focus();
   };
 
   return (

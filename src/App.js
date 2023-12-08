@@ -1,24 +1,30 @@
 import "./App.css";
 import Form from "./components/Form/Form.js";
-import { useState } from "react";
+import List from "./components/List/List.js";
+// import { useEffect } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 
 function App() {
-  const [activities, setActivities] = useState("");
+  const [activities, setActivities] = useLocalStorageState("activities", {
+    defaultValue: [],
+  });
   // const [checkWeather, setCheckWeather] = useState(false);
 
-  function handleAddActivity({ name, isForGoodWeather }) {
-    const newActivity = { name };
-    const isChecked = { isForGoodWeather };
-
-    setActivities([...activities, { newActivity, id: uid(), isChecked }]);
-    console.log(activities);
+  function handleAddActivity(data) {
+    data.id = uid();
+    const newActivity = data;
+    setActivities([...activities, newActivity]);
+    console.log(activities, newActivity);
   }
+
+  const isGoodWeather = true;
 
   return (
     <div className="App">
       <h1>Weather and Activities App</h1>
       <p>Here we are creating the new app!</p>
+      <List activities={activities} />
       <Form onAddActivity={handleAddActivity} />
     </div>
   );
