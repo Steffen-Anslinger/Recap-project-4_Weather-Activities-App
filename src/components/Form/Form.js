@@ -11,7 +11,8 @@ function Form({ onAddActivity }) {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    const isForGoodWeather = data.checkbox === "on" ? true : false;
+    const isForGoodWeather = data.checkbox === "on";
+    console.log(isForGoodWeather)
     onAddActivity(data, isForGoodWeather);
 
     event.target.reset();

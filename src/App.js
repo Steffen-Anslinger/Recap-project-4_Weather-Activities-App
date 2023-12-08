@@ -19,12 +19,13 @@ function App() {
   }
 
   const isGoodWeather = true;
-
+  const filteredActivity = activities.filter((activity)=> { return activity.isForGoodWeather === isGoodWeather})
+  console.log(filteredActivity)
   return (
     <div className="App">
       <h1>Weather and Activities App</h1>
       <p>Here we are creating the new app!</p>
-      <List activities={activities} />
+      <List activities={filteredActivity} />
       <Form onAddActivity={handleAddActivity} />
     </div>
   );
