@@ -1,3 +1,5 @@
+import "./Form.css";
+
 function Form({ onAddActivity }) {
   const handleSubmit = (event) => {
     event.preventDefault();

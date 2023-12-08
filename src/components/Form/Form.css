@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+  margin: 2em;
+}
+
+button {
+  border: none;
+  padding-inline: 20px;
+  padding-block: 10px;
+  font-size: 1.5rem;
+  margin: 3em;
+}
