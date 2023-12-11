@@ -4,26 +4,24 @@ function Form({ onAddActivity }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // const formData = {
-    //   name: event.target.elements.activity.value,
-    //   isForGoodWeather: event.target.elements.checkbox.checked,
-    // };
-
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    const isForGoodWeather = data.checkbox === "on";
-    console.log(isForGoodWeather)
-    onAddActivity(data, isForGoodWeather);
+    const activityName = data.activityName;
+    const isForGoodWeather = data.checkbox == "on" ? true : false;
 
+
+    onAddActivity({activityName,isForGoodWeather});
+
+    const form = event.target.elements
     event.target.reset();
-    event.target.elements.activity.focus();
+    form.activityName.focus();
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>Add new activity:</h2>
-      <label htmlFor="activity">Name:</label>
-      <input id="activity" name="activity" type="text" />
+      <label htmlFor="activityName">Name:</label>
+      <input id="activityName" name="activityName" type="text" />
       <label htmlFor="checkbox">Good weather?:</label>
       <input id="checkbox" name="checkbox" type="checkbox" />
       <button type="submit">Submit</button>
