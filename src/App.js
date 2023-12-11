@@ -24,22 +24,21 @@ function App() {
     (activity) => activity.isForGoodWeather === weather.isGoodWeather
   );
 
+  //const intervalId = setInterval(() => {
+  //fetchWeather();
+  //}, 5000);
+  //return () => clearInterval(intervalId);
+
+  async function fetchWeather() {
+    const response = await fetch("https://example-apis.vercel.app/api/weather");
+    const apiData = await response.json();
+
+    setWeather(apiData);
+  }
   useEffect(() => {
-    async function fetchWeather() {
-      const response = await fetch(
-        "https://example-apis.vercel.app/api/weather"
-      );
-      const apiData = await response.json();
-
-      setWeather(apiData);
-
-      // const intervalId = setInterval(() => {
-      //   fetchWeather();
-      // }, 5000);
-      // return () => clearInterval(intervalId);
-    }
-
     fetchWeather();
+    const intervalId = setInterval(fetchWeather, 5000);
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
