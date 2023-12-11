@@ -1,3 +1,5 @@
+import "./List.css";
+
 function List({ activities, weather, onDeleteActivity }) {
   return (
     <>
@@ -7,6 +9,7 @@ function List({ activities, weather, onDeleteActivity }) {
           <li key={id}>
             {activityName}
             <button
+              className="button--delete"
               aria-label="Delete button"
               onClick={() => {
                 onDeleteActivity({ id });

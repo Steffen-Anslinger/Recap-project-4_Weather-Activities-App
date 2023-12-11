@@ -21,9 +21,11 @@ function Form({ onAddActivity }) {
       <h2>Add new activity:</h2>
       <label htmlFor="activityName">Name:</label>
       <input id="activityName" name="activityName" type="text" />
-      <label htmlFor="checkbox">Good weather?:</label>
+      <label htmlFor="checkbox">Good weather?</label>
       <input id="checkbox" name="checkbox" type="checkbox" />
-      <button type="submit">Submit</button>
+      <button type="submit" className="button--submit">
+        Submit
+      </button>
     </form>
   );
 }
