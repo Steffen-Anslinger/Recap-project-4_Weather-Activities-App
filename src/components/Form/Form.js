@@ -7,12 +7,11 @@ function Form({ onAddActivity }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     const activityName = data.activityName;
-    const isForGoodWeather = data.checkbox == "on" ? true : false;
+    const isForGoodWeather = data.checkbox === "on" ? true : false;
 
+    onAddActivity({ activityName, isForGoodWeather });
 
-    onAddActivity({activityName,isForGoodWeather});
-
-    const form = event.target.elements
+    const form = event.target.elements;
     event.target.reset();
     form.activityName.focus();
   };

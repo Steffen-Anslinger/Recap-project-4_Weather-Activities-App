@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 
-
 function App() {
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: [],
@@ -17,7 +16,13 @@ function App() {
     setActivities([...activities, newActivity]);
   }
 
-  const filteredActivity = activities.filter((activity)=>   activity.isForGoodWeather === weather.isGoodWeather )
+  function handleDeleteActivity({ id }) {
+    setActivities(activities.filter((activity) => activity.id !== id));
+  }
+
+  const filteredActivity = activities.filter(
+    (activity) => activity.isForGoodWeather === weather.isGoodWeather
+  );
 
   useEffect(() => {
     async function fetchWeather() {
@@ -27,6 +32,11 @@ function App() {
       const apiData = await response.json();
 
       setWeather(apiData);
+
+      // const intervalId = setInterval(() => {
+      //   fetchWeather();
+      // }, 5000);
+      // return () => clearInterval(intervalId);
     }
 
     fetchWeather();
@@ -34,9 +44,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Weather and Activities App</h1>
-      <p>Here we are creating the new app!</p>
-      <List activities={filteredActivity} />
+      <h1>
+        {weather.condition} {weather.temperature}°C
+      </h1>
+      <List
+        activities={filteredActivity}
+        weather={weather.isGoodWeather}
+        onDeleteActivity={handleDeleteActivity}
+      />
       <Form onAddActivity={handleAddActivity} />
     </div>
   );

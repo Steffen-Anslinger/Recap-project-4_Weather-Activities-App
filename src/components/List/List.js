@@ -1,10 +1,23 @@
-function List({ activities }) {
+function List({ activities, weather, onDeleteActivity }) {
   return (
-    <ul>
-      {activities.map(({ activity, id }) => (
-        <li key={id}>{activity}</li>
-      ))}
-    </ul>
+    <>
+      <h2>{weather ? "Good weather activity" : "Bad weather activity"}</h2>
+      <ul>
+        {activities.map(({ activityName, id }) => (
+          <li key={id}>
+            {activityName}
+            <button
+              aria-label="Delete button"
+              onClick={() => {
+                onDeleteActivity({ id });
+              }}
+            >
+              x
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 
